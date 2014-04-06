@@ -7,6 +7,7 @@ if [ ! -d "/home/vagrant/hipache" ]; then
 	sudo apt-add-repository ppa:chris-lea/node.js -y
 	sudo apt-get update
 	sudo apt-get install -y at nodejs git redis-server
+	sudo sed -i 's/bind 127\.0\.0\.1/bind 0\.0\.0\.0/g' /etc/redis/redis.conf
 
 	# see https://github.com/mitchellh/vagrant/issues/3166#issuecomment-37605165
 	sudo echo 'dhclient -r eth0 && dhclient eth0' | at now + 1 minute

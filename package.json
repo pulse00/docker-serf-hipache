@@ -1,0 +1,16 @@
+{
+  "name": "docker-hipache",
+  "version": "0.0.0",
+  "description": "docker-hipache continuous deployment",
+  "main": "deploy.js",
+  "dependencies": {
+    "dockerode": "~1.2.9",
+    "redis": "^0.10.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
