@@ -1,6 +1,6 @@
 #!/bin/sh
 
-if [ ! -d "/home/vagrant/web" ]; then
+if [ ! -d "/etc/serf" ]; then
 
 	# install dependencies
 	sudo apt-get update

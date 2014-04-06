@@ -4,7 +4,6 @@
   },
 
   "event_handlers": [
-    "handle.sh",
     "user:deploy=deploy.sh"
   ]
 }
