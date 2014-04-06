@@ -1,0 +1,10 @@
+{
+  "tags": {
+        "role": "deploy",
+  },
+
+  "event_handlers": [
+    "handle.sh",
+    "user:deploy=deploy.sh"
+  ]
+}
