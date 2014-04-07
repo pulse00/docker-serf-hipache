@@ -1,6 +1,6 @@
 {
   "tags": {
-        "role": "deploy",
+        "role": "deploy"
   },
 
   "event_handlers": [

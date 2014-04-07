@@ -14,7 +14,7 @@ if [ ! -d "/etc/serf" ]; then
 	# install serf
 	sudo wget https://dl.bintray.com/mitchellh/serf/0.5.0_linux_amd64.zip -P /tmp
 	sudo unzip /tmp/0.5.0_linux_amd64.zip -d /usr/bin/
-	sudo wget https://raw.githubusercontent.com/hashicorp/serf/master/ops-misc/debian/serf.upstart -O /etc/init/serf.conf
+	sudo wget https://gist.githubusercontent.com/pulse00/221402f6df391dd43d1a/raw/8d781ae8b4bf61287c77a3d9393eb09a91892bcd/gistfile1.txt -O /etc/init/serf.conf
 	sudo mkdir /etc/serf && sudo cp /vagrant/serf/config.json /etc/serf/config.json
 	sudo service serf start
 fi
