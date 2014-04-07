@@ -9,11 +9,11 @@ var redis = require("redis");
  * @constructor
  */
 function Hipache(host, port, redisKey) {
-	this.client = redis.createClient(port, host);
+    this.client = redis.createClient(port, host);
 
-	this.client.on("error", function (err) {
-	    console.log("Redis error " + err);
-	});
+    this.client.on("error", function (err) {
+        console.log("Redis error " + err);
+    });
 
     this.redisKey = redisKey;
 }
@@ -23,9 +23,9 @@ function Hipache(host, port, redisKey) {
  * @param dns
  * @param callback
  */
-Hipache.prototype.addBackend = function(dns, callback) {
+Hipache.prototype.addBackend = function (dns, callback) {
 
-    this.client.rpush([self.redisKey, dns], function(err, res) {
+    this.client.rpush([self.redisKey, dns], function (err, res) {
         callback(err, res);
     });
 }
@@ -34,9 +34,9 @@ Hipache.prototype.addBackend = function(dns, callback) {
  * @param dns
  * @param callback
  */
-Hipache.prototype.removeBackend = function(dns, callback) {
+Hipache.prototype.removeBackend = function (dns, callback) {
 
-    this.client.lrem([self.redisKey, 10, dns], function(err, res) {
+    this.client.lrem([self.redisKey, 10, dns], function (err, res) {
         callback(err, res);
     });
 }
@@ -47,17 +47,17 @@ Hipache.prototype.removeBackend = function(dns, callback) {
  * @param newDns in the form 'http://ip:port'
  * @param callback
  */
-Hipache.prototype.replaceBackend = function(oldDns, newDns, callback) {
+Hipache.prototype.replaceBackend = function (oldDns, newDns, callback) {
 
-	console.log('Replacing hipache backends, old => ' + oldDns + ", new => " + newDns);
-	var self = this;
+    console.log('Replacing hipache backends, old => ' + oldDns + ", new => " + newDns);
+    var self = this;
 
-    self.addBackend(newDns, function(err, res) {
+    self.addBackend(newDns, function (err, res) {
 
         if (err) {
             callback(err);
         } else {
-            self.removeBackend(oldDns, function(err, res) {
+            self.removeBackend(oldDns, function (err, res) {
                 callback(err, res);
             })
         }

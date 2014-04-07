@@ -6,8 +6,8 @@ var deployer = new Deployer('/var/run/docker.sock', hipache, "docker.hipache:500
 deployer.deployContainer();
 
 // timeout after 30 seconds
-setTimeout(function() {
-	console.log('Timeout during deployment');
-	process.exit(1);
+setTimeout(function () {
+    console.log('Timeout during deployment');
+    process.exit(1);
 }, 30000);
 

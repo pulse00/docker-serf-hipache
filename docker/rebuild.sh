@@ -1,5 +1,8 @@
 #!/bin/sh
 
+### Rebuild the nginx image, push it to the registry and send the deploy event via serf
+
+
 # build the nginx container
 docker build -t hipache/nginx .
 

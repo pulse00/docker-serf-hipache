@@ -1,5 +1,8 @@
 #!/bin/sh
 
+## Shell provisioner for the vagrant backend box
+## Installs the required dependencies
+
 if [ ! -d "/etc/serf" ]; then
 
 	# install dependencies

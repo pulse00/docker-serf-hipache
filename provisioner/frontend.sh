@@ -1,6 +1,8 @@
 #!/bin/sh
 
-# install hipache and docker
+## Shell provisioner for the vagrant frontend box
+## Installs the required dependencies
+
 if [ ! -d "/home/vagrant/hipache" ]; then
 
 	# install dependencies
@@ -40,6 +42,4 @@ if [ ! -d "/home/vagrant/hipache" ]; then
 	sudo mkdir /etc/serf && sudo cp /vagrant/serf/config.json /etc/serf/config.json
 	sudo service serf start
 
-else
-	echo "Frontend already provisioned."
-fi 
+fi
