@@ -26,6 +26,9 @@ function Deployer(dockerSocket, hipache, image, command, ports) {
     this.image = image;
     this.command = command;
     this.docker = new Docker({socketPath: dockerSocket});
+
+    //TODO retrieve the host ip via node
+    this.backendIp = "http://192.168.50.195";
 }
 
 /**
@@ -69,9 +72,7 @@ Deployer.prototype.redeploy = function (container, successCallback, errorCallbac
         errorCallback(err);
     }, function (data) {
 
-        //TODO retrieve the host ip via node
-        var backendIp = "http://192.168.50.195";
-        self.hipache.replaceBackend(backendIp + ":" + oldPort, backendIp + ":" + newPort, function (err, data) {
+        self.hipache.replaceBackend(self.backendIp + ":" + oldPort, self.backendIp + ":" + newPort, function (err, data) {
 
             if (err) {
                 self.exitWithError(err);
@@ -149,14 +150,23 @@ Deployer.prototype.deployContainer = function () {
 
             //TODO: check if the containers have been started from the image provided to the Deployer
             if (containers.length == 0) {
+
                 console.log('No containers running, starting a new one at port ' + self.ports[0]);
                 self.startContainer(self.ports[0], function (err) {
                     self.exitWithError(err);
                 }, function (data) {
-                    console.log('Deployment successful');
-                    process.exit(0);
+                    self.hipache.addBackend(self.backendIp + ":" + self.ports[0], function(err, res) {
+                        if (err) {
+                            self.exitWithError(err);
+                        } else {
+                            console.log('Deployment successful');
+                            process.exit(0);
+                        }
+                    });
                 });
+
             } else if (containers.length == 1) {
+
                 console.log('Redeploying running container');
                 self.redeploy(containers[0], function (err) {
                     self.exitWithError(err);
@@ -164,6 +174,7 @@ Deployer.prototype.deployContainer = function () {
                     console.log('Deployment successful');
                     process.exit(0);
                 });
+
             } else {
                 self.exitWithError('There are more than one containers running for image ' + this.image);
             }

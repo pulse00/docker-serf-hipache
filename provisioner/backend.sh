@@ -21,6 +21,9 @@ if [ ! -d "/etc/serf" ]; then
 	sudo mkdir /etc/serf && sudo cp /vagrant/serf/config.json /etc/serf/config.json
 	sudo service serf start
 
+	# install the deployment node modules (dockerode and redis)
+	cd /vagrant/deployment && sudo npm install
+
 	# make the deploy script executable
 	sudo chmod +x /vagrant/deployment/deploy.sh
 

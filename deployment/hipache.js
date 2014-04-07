@@ -25,7 +25,7 @@ function Hipache(host, port, redisKey) {
  */
 Hipache.prototype.addBackend = function (dns, callback) {
 
-    this.client.rpush([self.redisKey, dns], function (err, res) {
+    this.client.rpush([this.redisKey, dns], function (err, res) {
         callback(err, res);
     });
 }
@@ -36,7 +36,7 @@ Hipache.prototype.addBackend = function (dns, callback) {
  */
 Hipache.prototype.removeBackend = function (dns, callback) {
 
-    this.client.lrem([self.redisKey, 10, dns], function (err, res) {
+    this.client.lrem([this.redisKey, 10, dns], function (err, res) {
         callback(err, res);
     });
 }
