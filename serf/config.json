@@ -4,6 +4,6 @@
   },
 
   "event_handlers": [
-    "user:deploy=deploy.sh"
+    "user:deploy=/vagrant/deployment/deploy.sh"
   ]
 }

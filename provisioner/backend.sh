@@ -17,4 +17,11 @@ if [ ! -d "/etc/serf" ]; then
 	sudo wget https://gist.githubusercontent.com/pulse00/221402f6df391dd43d1a/raw/8d781ae8b4bf61287c77a3d9393eb09a91892bcd/gistfile1.txt -O /etc/init/serf.conf
 	sudo mkdir /etc/serf && sudo cp /vagrant/serf/config.json /etc/serf/config.json
 	sudo service serf start
+
+	# make the deploy script executable
+	sudo chmod +x /vagrant/deployment/deploy.sh
+
+	# join the serf cluster (the frontend node)
+	serf join 192.168.50.190
+
 fi

@@ -37,6 +37,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     backend.vm.hostname = "backend"
     backend.vm.network "private_network", ip: "192.168.50.195"
     backend.vm.network :forwarded_port, :host => 4444, :guest => 4243
+    backend.vm.synced_folder ".", "/vagrant", type: "nfs"
 
     # setup the box
     backend.vm.provision "shell",
