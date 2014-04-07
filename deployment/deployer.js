@@ -41,7 +41,7 @@ Deployer.prototype.redeploy = function(container, successCallback, errorCallback
 
 		//TODO retrieve the host ip via node
 		var backendIp = "http://192.168.50.195";
-		self.hipache.replaceBackend(backendIp + ":" + newPort, backendIp + ":" + oldPort, function(err, data) {
+		self.hipache.replaceBackend(backendIp + ":" + oldPort, backendIp + ":" + newPort, function(err, data) {
 
 			if (err) {
 				self.exitWithError(err);
